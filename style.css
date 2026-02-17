@@ -1,14 +1,14 @@
-h1 {   color: #e109c0;
+h1 {   color: #000000;
     font-family: Arial, sans-serif;
 }
 p {color: #1fe00d;
     font-family: Arial, sans-serif;}
   section   
-section{color: rgba(252, 99, 4, 0.267);
+section{color: rgba(255, 98, 0, 0.267);
     font-family: bisque;
 }
 section ul {
-    color: rgba(252, 99, 4, 0.267);
+    color: rgb(255, 4, 4);
     font-family: bisque;
     font-size: 19px;
     margin: 9px 0;
