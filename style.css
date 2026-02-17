@@ -1,10 +1,17 @@
-h1 {   color: #2c3e50;
+h1 {   color: #e109c0;
     font-family: Arial, sans-serif;
 }
-
-p {
-    font-size: 16px;
-    margin: 10px 0;
+p {color: #1fe00d;
+    font-family: Arial, sans-serif;}
+  section   
+section{color: rgba(252, 99, 4, 0.267);
+    font-family: bisque;
+}
+section ul {
+    color: rgba(252, 99, 4, 0.267);
+    font-family: bisque;
+    font-size: 19px;
+    margin: 9px 0;
     padding: 5px;
-    border: 1px solid #ddd;
+    border: 6px solid #cee679;
 }
