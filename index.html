@@ -1,26 +1,120 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title> Мій перший сайт</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <h1>Привіт! я починаю шлях у Frontend</h1>
-    
-        <p> Сьогодні я зробив свій перший HTML файл.</p>
-         <link rel="stylesheet" href="style.css">
-         <section><h2>Мої хоббі</h2>
-        <ul>Спілкування з моєю Коханою
-            <li>Спорт</li>
-            <li>навчання фронтенду</li>
-             <head>
-        <h1>я хз що написати</h1><h2>я поняв лише що клацати<h2>
-            <ul>Але як написати  код з 0 я не розумію</ul>
-            <ul>Допоможіть мені</ul>
-    
-    </head>
-        </ul>
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>МІЙ ПІСІК</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="header">
+    <div class="container header__inner">
+      <div class="logo">ТВІЙ ЛАДІДУСЬКО</div>
+
+      <nav class="nav">
+        <a class="nav__link" href="#features">Бусінка</a>
+        <a class="nav__link" href="#about">Хто я</a>
+        <a class="nav__link" href="#contact">Силочки</a>
+      </nav>
+
+      <a class="btn btn--primary" href="#contact">Тикни на мене</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <div class="hero__text">
+          <h1 class="title">Привіт пісік! я Кохаю Тебе</h1>
+          <p class="subtitle">
+            Це мій перший нормальний лендінг: зі структурою, кнопками і блоками.
+            Я віришив присвятити його тобі
+          </p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#features">Ти</a>
+            <a class="btn btn--ghost" href="#about">Про мене</a>
+          </div>
+        </div>
+
+        <div class="hero__media" aria-label="image placeholder">
+          <img src="assets/photo.jpg" alt="Моє фото" class="hero__img">
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <h2 class="section__title">Бусінка</h2>
+        <p class="section__subtitle">Ти моя КОХАНА</p>
+
+        <div class="cards">
+          <article class="card">
+            <h3 class="card__title">Обожнюю Тебе</h3>
+            <p class="card__text">Я постійно сумую за тобою, моя Кохана</p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Ти в моїй голові</h3>
+            <p class="card__text">Ні однієї іншої думки не маю, тільки про Тебе</p>
+          </article>
+
+          <article class="card">
+            <h3 class="card__title">Ти робиш мене щасливим</h3>
+            <p class="card__text">Ти заставляєш мене постійно усміхатись</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <h2 class="section__title">Про мене</h2>
+      
+
+        <p class="section__subtitle">
+          Я твій Коханий,Ладідусько,пісік і багато інших назв
+        </p>
+      </div>
+    </section>
+    <section class="section">
+  <div class="container">
+    <h2 class="section__title">Що я вмію</h2>
+    <p class="section__subtitle">
+      Я вмію любити тебе, обожнювати тебе і бути твоїм Ладідуськом
+    </p>
+    <ul class="skills">
+  <li class="skills__item">Можу Тебе розсмішити</li>
+  <li class="skills__item">Можу заставити тебе сміятися</li>
+  <li class="skills__item">Можу бути твоїм Ладідуськом</li>
+</ul>
+  </div>
 </section>
-         
-    </body>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <h2 class="section__title">Посилання я тут нічого не придумав</h2>
+        <p class="section__subtitle">Тут буде силка на мій гіт і інсту</p>
+
+        <div class="contact">
+          <a class="btn btn--primary" href="https://github.com/chechnyas" target="_blank" rel="noreferrer">Мій GitHub</a>
+          <a class="btn btn--ghost" href="https://www.instagram.com/kiper.intt/" >Інста</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p class="muted">Кохаааю Тебе безмежно © Ладідусько</p>
+      <div class="footer__links">
+        <a class="nav__link" href="#features">Бусінка</a>
+        <a class="nav__link" href="#about">Хто я</a>
+        <a class="nav__link" href="#contact">Силочки</a>
+      </div>
+    </div>
+  </footer>
+</body>
 </html>
+         
