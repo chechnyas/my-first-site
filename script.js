@@ -74,9 +74,56 @@ const burger = document.querySelector(".burger");
 const nav = document.querySelector(".nav");
 
 if (burger && nav) {
-  burger.addEventListener("click", () => {
+  const burger = document.querySelector(".burger");
+const nav = document.querySelector(".nav");
+
+function closeMenu() {
+  if (!burger || !nav) return;
+  nav.classList.remove("nav--open");
+  burger.textContent = "☰";
+  burger.setAttribute("aria-expanded", "false");
+}
+
+function toggleMenu() {
+  if (!burger || !nav) return;
+  const isOpen = nav.classList.toggle("nav--open");
+  burger.textContent = isOpen ? "✕" : "☰";
+  burger.setAttribute("aria-expanded", String(isOpen));
+}
+
+if (burger && nav) {
+  burger.addEventListener("click", (e) => {
+    e.stopPropagation(); // щоб клік по бургеру не вважався "клік поза меню"
+    toggleMenu();
+  });
+}  {
     const isOpen = nav.classList.toggle("nav--open");
     burger.textContent = isOpen ? "✕" : "☰";
     burger.setAttribute("aria-expanded", String(isOpen));
+  };
+  // Закриття меню при кліку на пункт
+const navLinks = document.querySelectorAll(".nav__link");
+
+navLinks.forEach(link => {
+  link.addEventListener("click", () => {
+    closeMenu();
   });
+});
+// Закриття при кліку поза меню
+document.addEventListener("click", (e) => {
+  if (!nav || !burger) return;
+
+  const clickedInsideNav = nav.contains(e.target);
+  const clickedBurger = burger.contains(e.target);
+
+  if (!clickedInsideNav && !clickedBurger) {
+    closeMenu();
+  }
+});
+// Закриття по Esc
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    closeMenu();
+  }
+});
 }
