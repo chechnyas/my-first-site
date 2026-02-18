@@ -49,9 +49,12 @@ a {
 
 /* 4) HEADER */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #e96b9b;
   border-bottom: 5px solid #3c3b3b;
 }
-
 .header__inner {
   height: 67px;
   display: flex;
@@ -131,9 +134,8 @@ a {
 }
 
 /* 6) СЕКЦІЇ */
-.section {
-  padding: 40px 0;
-  border-top: 2px solid #000000;
+.section:nth-of-type(even) {
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .section__title {
@@ -216,6 +218,23 @@ a {
   height: 260px;
   object-fit: cover;
   border-radius: 16px;
+}
+.btn,
+.card,
+.hero__img {
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.hero__img:hover {
+  transform: scale(1.02);
 }
 /* 9) АДАПТИВ */
  @media (max-width: 768px) {
