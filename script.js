@@ -70,3 +70,13 @@ if (toggle) {
     document.body.classList.toggle("dark");
   });
 }
+const burger = document.querySelector(".burger");
+const nav = document.querySelector(".nav");
+
+if (burger && nav) {
+  burger.addEventListener("click", () => {
+    const isOpen = nav.classList.toggle("nav--open");
+    burger.textContent = isOpen ? "✕" : "☰";
+    burger.setAttribute("aria-expanded", String(isOpen));
+  });
+}

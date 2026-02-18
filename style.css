@@ -201,7 +201,8 @@ a {
 
 .muted {
   margin: 0;
-  color: #ffffff;}
+  color: #ffffff;
+}
 .skills {
   margin: 0;
   padding-left: 18px;
@@ -286,6 +287,15 @@ a {
   background: #222;
   border-color: #333;
 }
+.burger {
+  display: none;
+
+  border: 2px solid #000;
+  border-radius: 10px;
+  background: #fff;
+  padding: 8px 12px;
+  font-weight: 900;
+}
 /* 9) АДАПТИВ */
 @media (max-width: 768px) {
   .hero__inner {
@@ -298,6 +308,41 @@ a {
   }
 
   .nav {
-    display: none;
+  display: none;
+}
+
+.nav.nav--open {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  position: absolute;
+  top: 70px;
+  right: 16px;
+
+  background: #fff;
+  color: #000;
+  border: 2px solid #000;
+  padding: 12px;
+  border-radius: 16px;
+  z-index: 20;
+  display: block;
+}
+   .burger {
+    display: inline-block;
   }
+
+  
+}
+.burger:hover {
+  opacity: 0.9;
+}
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header__inner {
+  position: relative;
 }
