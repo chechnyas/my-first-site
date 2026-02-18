@@ -45,12 +45,19 @@ function updateCounter() {
   const minutes = Math.floor((totalSeconds % 3600) / 60);
   const seconds = totalSeconds % 60;
 
-  document.getElementById("daysTogether").textContent =
-    `${days} днів ${hours} год ${minutes} хв ${seconds} сек`;
+ document.getElementById("daysTogether").textContent =
+  `${days} днів ∞ ${hours} год ${minutes} хв ${seconds} сек`;
 
-  const percent = Math.min((days / 365) * 100, 100);
-  document.getElementById("progressBar").style.width = percent + "%";
+const totalDays = 365 * 10; // або скільки ти поставив
+let percent = (days / totalDays) * 100;
 
+// мінімум 3% щоб було видно
+percent = Math.max(percent, 3);
+
+// максимум 100%
+percent = Math.min(percent, 100);
+
+document.getElementById("progressBar").style.width = percent + "%";
   // шанс сердечка (1 раз з 3 секунд приблизно)
   if (Math.random() < 0.33) spawnHeart();
 }

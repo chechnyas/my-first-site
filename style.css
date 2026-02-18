@@ -10,7 +10,7 @@ body {
   font-family: Arial, sans-serif;
   line-height: 1.5;
   color: #000000;
-  background: #e96b9b;
+  background: #ef7a7a;
 }
 
 a {
@@ -34,8 +34,8 @@ a {
 }
 
 .btn--primary {
-  background: #494949;
-  color: #ffd3d3;
+  background: #000000;
+  color: #ffffff;
 }
 
 .btn--ghost {
@@ -52,8 +52,8 @@ a {
   position: sticky;
   top: 0;
   z-index: 10;
-  background: #e96b9b;
-  border-bottom: 5px solid #3c3b3b;
+  background: #807e7eb7;
+  border-bottom: 5px solid #000000;
 }
 .header__inner {
   height: 67px;
