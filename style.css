@@ -237,7 +237,7 @@ a {
   transform: scale(1.02);
 }
 /* 9) АДАПТИВ */
- @media (max-width: 768px) {
+@media (max-width: 768px) {
   .hero__inner {
     flex-direction: column;
     align-items: stretch;
