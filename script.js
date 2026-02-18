@@ -64,3 +64,9 @@ document.getElementById("progressBar").style.width = percent + "%";
 
 updateCounter();
 setInterval(updateCounter, 1000);
+const toggle = document.getElementById("themeToggle");
+if (toggle) {
+  toggle.addEventListener("click", () => {
+    document.body.classList.toggle("dark");
+  });
+}

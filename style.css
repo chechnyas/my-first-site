@@ -273,6 +273,19 @@ a {
 #counter {
   cursor: pointer;
 }
+.dark {
+  background: #111;
+  color: #f5f5f5;
+}
+
+.dark .section {
+  background: #1a1a1a;
+}
+
+.dark .card {
+  background: #222;
+  border-color: #333;
+}
 /* 9) АДАПТИВ */
 @media (max-width: 768px) {
   .hero__inner {
