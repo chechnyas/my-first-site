@@ -1,0 +1,268 @@
+/* Спокійна палітра + акуратні блоки */
+
+.page-about {
+  background: #439bc1;
+  color: #ffffff;
+}
+
+.about-header {
+  position: sticky;
+  top: 0;
+  backdrop-filter: blur(8px);
+  background: rgba(38, 190, 255, 0.85);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  z-index: 10;
+}
+
+.about-header__inner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+}
+
+.about-title {
+  margin: 0;
+  font-size: 22px;
+}
+
+.about-main {
+  padding: 22px 0 40px;
+}
+
+.about-subtitle {
+  margin: 0 0 18px;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* Сітка карток */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+/* Картка */
+.card {
+  background: #FFF1D6;
+  color: #000000;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+  transform: translateY(0);
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px rgba(0,0,0,0.10);
+}
+
+.card__img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+.card__body {
+  padding: 14px;
+}
+
+.card__title {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.card__text {
+  margin: 0;
+  color: #000000;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* Низ */
+.about-bottom {
+  margin-top: 18px;
+}
+
+/* Легка анімація появи */
+.reveal {
+  animation: fadeUp .5s ease both;
+}
+
+.reveal:nth-child(2) { animation-delay: .08s; }
+.reveal:nth-child(3) { animation-delay: .16s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hearts-bg {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Сердечко */
+.heart {
+  position: absolute;
+  font-size: 18px;
+  opacity: 0;
+  animation: floatUp 4s linear forwards;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-200px) scale(1.2);
+    opacity: 0;
+  }
+}
+
+/* щоб контент був поверх */
+.page-about {
+  position: relative;
+  z-index: 1;
+}
+.about-header__inner {
+  flex-wrap: wrap;
+}
+
+.about-title {
+  max-width: 100%;
+  word-break: break-word;
+}
+/* FIX: щоб заголовок не вилазив за екран у flex-хедері */
+.about-title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* ===== DARK MODE for ABOUT page ===== */
+
+body.dark.page-about {
+  background: #0B3D2E;
+  color: #ffffff;
+}
+
+/* хедер на about */
+body.dark.page-about .about-header {
+  background: #0F2F2F;
+   color: #fffefe;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* текст підзаголовків */
+body.dark.page-about .about-subtitle,
+body.dark.page-about .card__text {
+  opacity: 0.88;
+   color: #ffffff;
+   
+}
+
+/* картки і міні-галерея */
+body.dark.page-about .card,
+body.dark.page-about .mini-gallery {
+  background: #B8973A;
+   color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.45);
+}
+
+/* якщо у тебе є якісь “білі” блоки ще */
+body.dark.page-about .card__body {
+  background: transparent;
+}
+/* на дуже вузьких екранах — дозволимо перенос */
+@media (max-width: 420px) {
+  .about-header__inner {
+    flex-wrap: wrap;
+  }
+  .about-title {
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+}
+.mini-gallery {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.mini-gallery__images {
+  display: flex;
+  gap: 8px;
+}
+
+.mini-gallery__images img {
+  width: 90px;          /* менші фото */
+  height: 90px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.mini-gallery__text {
+  max-width: 300px;
+}
+.mini-gallery {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+
+  /* нове */
+  color: #000000;
+  background: #FFF1D6;
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+@media (max-width: 600px) {
+  .mini-gallery {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mini-gallery__images img {
+    width: 70px;
+    height: 70px;
+  }
+}
+@media (max-width: 600px) {
+  .mini-gallery {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mini-gallery__images img {
+    width: 70px;
+    height: 70px;
+  }
+}
+/* Адаптив */
+@media (max-width: 900px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .cards { grid-template-columns: 1fr; }
+  .card__img { height: 200px; }
+  @media (max-width: 420px) {
+  .about-title { font-size: 18px; }
+}
+}

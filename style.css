@@ -376,6 +376,34 @@ button {
   color: inherit;
   -webkit-text-fill-color: currentColor;
 }
+.btn--page {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+  border: 2px solid #000;
+
+  background: #000000;
+  color: #ffffff;
+
+  transition: 0.5s ease;
+}
+
+.btn--page:hover {
+  background: #f7a902;
+  color: #ffffff;
+}
+body.dark .btn--page {
+  background: #222;
+  color: #f5f5f5;
+  border-color: #444;
+}
+
+body.dark .btn--page:hover {
+  background: #e96b9b;
+  color: #fff;
+}
 /* 9) АДАПТИВ */
 @media (max-width: 768px) {
   .accordion__inner {
@@ -433,4 +461,11 @@ button {
 
 .header__inner {
   position: relative;
+}
+@media (max-width: 768px) {
+  .header__inner {
+    height: auto;       /* замість 67px */
+    flex-wrap: wrap;    /* дозволяємо перенос */
+    padding: 12px 0;
+  }
 }

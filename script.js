@@ -1,148 +1,147 @@
-const startDate = new Date("2025-06-20T00:00:00"); // постав свою дату
-const heartsBox = document.getElementById("hearts");
-const counter = document.getElementById("counter");
+// helpers
+function $(sel) { return document.querySelector(sel); }
+function $all(sel) { return document.querySelectorAll(sel); }
 
-function burstHearts(count = 10) {
-  for (let i = 0; i < count; i++) {
-    setTimeout(spawnHeart, i * 60);
+document.addEventListener("DOMContentLoaded", () => {
+  // ===== THEME (shared for all pages) =====
+  const themeToggle = $("#themeToggle");
+
+  // apply saved theme
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme === "dark") document.body.classList.add("dark");
+
+  // set icon for current state
+  if (themeToggle) {
+    themeToggle.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+
+    themeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const isDark = document.body.classList.contains("dark");
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+      themeToggle.textContent = isDark ? "☀️" : "🌙";
+    });
   }
-}
 
-if (counter) {
-  counter.addEventListener("click", () => burstHearts(12));
-}
-function spawnHeart() {
-  if (!heartsBox) return;
+  // ===== BURGER MENU (works if burger+nav exist) =====
+  const burger = $(".burger");
+  const nav = $(".nav");
 
-  const hearts = ["❤️", "💖", "💗", "💘", "💞"];
-  const heart = document.createElement("span");
-  heart.className = "heart";
-  heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
-
-  // позиція по ширині (трохи не до країв)
-  heart.style.left = (5 + Math.random() * 90) + "%";
-
-  // випадковий розмір + дрейф вбік
-  const scale = 0.7 + Math.random() * 1.2;     // 0.7 .. 1.9
-  const drift = (Math.random() * 60 - 30);     // -30px .. +30px
-  heart.style.setProperty("--scale", scale.toFixed(2));
-  heart.style.setProperty("--drift", drift.toFixed(0) + "px");
-
-  // додатково: різний розмір шрифту для “живості”
-  heart.style.fontSize = (14 + Math.random() * 14) + "px"; // 14..28
-
-  heartsBox.appendChild(heart);
-  setTimeout(() => heart.remove(), 2200);
-}
-
-function updateCounter() {
-  const now = new Date();
-  const diff = now - startDate;
-  const totalSeconds = Math.floor(diff / 1000);
-
-  const days = Math.floor(totalSeconds / 86400);
-  const hours = Math.floor((totalSeconds % 86400) / 3600);
-  const minutes = Math.floor((totalSeconds % 3600) / 60);
-  const seconds = totalSeconds % 60;
-
- document.getElementById("daysTogether").textContent =
-  `${days} днів ∞ ${hours} год ${minutes} хв ${seconds} сек`;
-
-const totalDays = 365 * 10; // або скільки ти поставив
-let percent = (days / totalDays) * 100;
-
-// мінімум 3% щоб було видно
-percent = Math.max(percent, 3);
-
-// максимум 100%
-percent = Math.min(percent, 100);
-
-document.getElementById("progressBar").style.width = percent + "%";
-  // шанс сердечка (1 раз з 3 секунд приблизно)
-  if (Math.random() < 0.33) spawnHeart();
-}
-
-updateCounter();
-setInterval(updateCounter, 1000);
-const toggle = document.getElementById("themeToggle");
-if (toggle) {
-  toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-  });
-}
-const burger = document.querySelector(".burger");
-const nav = document.querySelector(".nav");
-
-if (burger && nav) {
-  const burger = document.querySelector(".burger");
-const nav = document.querySelector(".nav");
-
-function closeMenu() {
-  if (!burger || !nav) return;
-  nav.classList.remove("nav--open");
-  burger.textContent = "☰";
-  burger.setAttribute("aria-expanded", "false");
-}
-
-function toggleMenu() {
-  if (!burger || !nav) return;
-  const isOpen = nav.classList.toggle("nav--open");
-  burger.textContent = isOpen ? "✕" : "☰";
-  burger.setAttribute("aria-expanded", String(isOpen));
-}
-
-if (burger && nav) {
-  burger.addEventListener("click", (e) => {
-    e.stopPropagation(); // щоб клік по бургеру не вважався "клік поза меню"
-    toggleMenu();
-  });
-}  {
-    const isOpen = nav.classList.toggle("nav--open");
-    burger.textContent = isOpen ? "✕" : "☰";
-    burger.setAttribute("aria-expanded", String(isOpen));
-  };
-  // Закриття меню при кліку на пункт
-const navLinks = document.querySelectorAll(".nav__link");
-
-navLinks.forEach(link => {
-  link.addEventListener("click", () => {
-    closeMenu();
-  });
-});
-// Закриття при кліку поза меню
-document.addEventListener("click", (e) => {
-  if (!nav || !burger) return;
-
-  const clickedInsideNav = nav.contains(e.target);
-  const clickedBurger = burger.contains(e.target);
-
-  if (!clickedInsideNav && !clickedBurger) {
-    closeMenu();
+  function closeMenu() {
+    if (!burger || !nav) return;
+    nav.classList.remove("nav--open");
+    burger.textContent = "☰";
+    burger.setAttribute("aria-expanded", "false");
   }
-});
-// Закриття по Esc
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closeMenu();
+
+  if (burger && nav) {
+    burger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = nav.classList.toggle("nav--open");
+      burger.textContent = isOpen ? "✕" : "☰";
+      burger.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    $all(".nav__link").forEach((link) => link.addEventListener("click", closeMenu));
+
+    document.addEventListener("click", (e) => {
+      if (!nav.contains(e.target) && !burger.contains(e.target)) closeMenu();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMenu();
+    });
   }
-});
-const accBtn = document.querySelector(".accordion__btn");
-const accContent = document.querySelector(".accordion__content");
-const accIcon = document.querySelector(".accordion__icon");
 
-if (accBtn && accContent) {
-  accBtn.addEventListener("click", () => {
-    const isHidden = accContent.hasAttribute("hidden");
+  // ===== ACCORDION (works if exists) =====
+  const accBtn = $(".accordion__btn");
+  const accContent = $(".accordion__content");
+  const accIcon = $(".accordion__icon");
 
-    if (isHidden) {
-      accContent.removeAttribute("hidden");
-      accBtn.setAttribute("aria-expanded", "true");
-      if (accIcon) accIcon.textContent = "–";
-    } else {
-      accContent.setAttribute("hidden", "");
-      accBtn.setAttribute("aria-expanded", "false");
-      if (accIcon) accIcon.textContent = "+";
+  if (accBtn && accContent) {
+    accBtn.addEventListener("click", () => {
+      const isHidden = accContent.hasAttribute("hidden");
+      if (isHidden) {
+        accContent.removeAttribute("hidden");
+        accBtn.setAttribute("aria-expanded", "true");
+        if (accIcon) accIcon.textContent = "–";
+      } else {
+        accContent.setAttribute("hidden", "");
+        accBtn.setAttribute("aria-expanded", "false");
+        if (accIcon) accIcon.textContent = "+";
+      }
+    });
+  }
+
+  // ===== COUNTER + HEARTS (index only) =====
+  const daysEl = $("#daysTogether");
+  const progressBar = $("#progressBar");
+  const counter = $("#counter");
+  const heartsBox = $("#hearts");
+
+  const startDate = new Date("2025-06-20T00:00:00"); // <- твоя дата
+
+  function spawnHeartInBox() {
+    if (!heartsBox) return;
+    const hearts = ["❤️", "💖", "💗", "💘", "💞"];
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = (5 + Math.random() * 90) + "%";
+    const scale = 0.7 + Math.random() * 1.2;
+    const drift = (Math.random() * 60 - 30);
+    heart.style.setProperty("--scale", scale.toFixed(2));
+    heart.style.setProperty("--drift", drift.toFixed(0) + "px");
+    heart.style.fontSize = (14 + Math.random() * 14) + "px";
+    heartsBox.appendChild(heart);
+    setTimeout(() => heart.remove(), 2200);
+  }
+
+  function burstHearts(count = 10) {
+    for (let i = 0; i < count; i++) setTimeout(spawnHeartInBox, i * 60);
+  }
+
+  if (counter) counter.addEventListener("click", () => burstHearts(12));
+
+  function updateCounter() {
+    if (!daysEl) return;
+
+    const now = new Date();
+    const diff = now - startDate;
+    const totalSeconds = Math.floor(diff / 1000);
+
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+
+    daysEl.textContent = `${days} днів ∞ ${hours} год ${minutes} хв ${seconds} сек`;
+
+    if (progressBar) {
+      const totalDays = 365 * 10;
+      let percent = (days / totalDays) * 100;
+      percent = Math.max(percent, 3);
+      percent = Math.min(percent, 100);
+      progressBar.style.width = percent + "%";
     }
-  });
-}
-}
+
+    if (heartsBox && Math.random() < 0.33) spawnHeartInBox();
+  }
+
+  updateCounter();
+  setInterval(updateCounter, 1000);
+
+  // ===== HEARTS BACKGROUND (about only) =====
+  const heartsBg = $(".hearts-bg");
+  if (heartsBg) {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "❤";
+      heart.style.left = Math.random() * 100 + "%";
+      heart.style.fontSize = (14 + Math.random() * 16) + "px";
+      heart.style.bottom = "-10px";
+      heartsBg.appendChild(heart);
+      setTimeout(() => heart.remove(), 4000);
+    }, 2000);
+  }
+});
