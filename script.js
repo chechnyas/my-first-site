@@ -126,4 +126,23 @@ document.addEventListener("keydown", (e) => {
     closeMenu();
   }
 });
+const accBtn = document.querySelector(".accordion__btn");
+const accContent = document.querySelector(".accordion__content");
+const accIcon = document.querySelector(".accordion__icon");
+
+if (accBtn && accContent) {
+  accBtn.addEventListener("click", () => {
+    const isHidden = accContent.hasAttribute("hidden");
+
+    if (isHidden) {
+      accContent.removeAttribute("hidden");
+      accBtn.setAttribute("aria-expanded", "true");
+      if (accIcon) accIcon.textContent = "–";
+    } else {
+      accContent.setAttribute("hidden", "");
+      accBtn.setAttribute("aria-expanded", "false");
+      if (accIcon) accIcon.textContent = "+";
+    }
+  });
+}
 }
