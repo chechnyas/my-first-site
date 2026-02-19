@@ -292,7 +292,7 @@ a {
 
   border: 2px solid #000;
   border-radius: 10px;
-  background: #fff;
+  background: #898484;
   padding: 8px 12px;
   font-weight: 900;
 }
@@ -304,7 +304,7 @@ a {
 
   border: 2px solid #000;
   border-radius: 16px;
-  background: #ea5e75;
+  background: #f790a2;
   padding: 14px 16px;
   font-weight: 800;
   cursor: pointer;
@@ -333,11 +333,12 @@ body.dark .accordion__content {
 }
 .accordion__btn:hover {
   background: #e99e1bf4;
-  color: #fff;
+  color: #ffffff;
 }
 .accordion__btn[aria-expanded="true"] {
   background: #e99e1bf4;
-  color: #fff;
+  color: #ffffff;
+  color: #000;
   transition: 0.2s;
 }
 .accordion__img {
