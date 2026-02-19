@@ -368,6 +368,14 @@ body.dark .accordion__btn[aria-expanded="true"] {
   background: #a50140;
   color: #fff;
 }
+/* iOS Safari fix: щоб кнопки не фарбувались в синє */
+button {
+  -webkit-appearance: none;
+  appearance: none;
+  font: inherit;
+  color: inherit;
+  -webkit-text-fill-color: currentColor;
+}
 /* 9) АДАПТИВ */
 @media (max-width: 768px) {
   .accordion__inner {
